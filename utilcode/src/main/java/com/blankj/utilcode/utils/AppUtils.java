@@ -52,17 +52,6 @@ public class AppUtils {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
-    
-     /**
-     * 安装指定路径下的Apk
-     */
-    public static void installApk(String filePath, Activity activity) {
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.setDataAndType(Uri.fromFile(new File(filePath)), "application/vnd.android.package-archive");
-        activity.startActivityForResult(intent, 0);
-    }
 
     /**
      * 卸载指定包名的App
@@ -269,6 +258,42 @@ public class AppUtils {
      */
     public static boolean isInstallApp(Context context, String packageName) {
         return getIntentByPackageName(context, packageName) != null;
+    }
+    
+     /**
+     * 获取当前App版本号
+     */
+    public static String getVersionName(Context context) {
+        String versionName = null;
+        PackageManager pm = context.getPackageManager();
+        PackageInfo info = null;
+        try {
+            info = pm.getPackageInfo(context.getApplicationContext().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (info != null) {
+            versionName = info.versionName;
+        }
+        return versionName;
+    }
+
+    /**
+     * 获取当前App版本Code
+     */
+    public static int getVersionCode(Context context) {
+        int versionCode = 0;
+        PackageManager pm = context.getPackageManager();
+        PackageInfo info = null;
+        try {
+            info = pm.getPackageInfo(context.getApplicationContext().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (info != null) {
+            versionCode = info.versionCode;
+        }
+        return versionCode;
     }
 
     /**
