@@ -52,6 +52,17 @@ public class AppUtils {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+    
+     /**
+     * 安装指定路径下的Apk
+     */
+    public static void installApk(String filePath, Activity activity) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        intent.addCategory("android.intent.category.DEFAULT");
+        intent.setDataAndType(Uri.fromFile(new File(filePath)), "application/vnd.android.package-archive");
+        activity.startActivityForResult(intent, 0);
+    }
 
     /**
      * 卸载指定包名的App
