@@ -3,6 +3,7 @@
 为方便查找，已进行大致归类，其目录如下所示：  
 > - **App相关→[AppUtils.java][app.java]**
 >  - 安装App *installApp*
+>  - 安装指定路径下的Apk 
 >  - 卸载指定包名的App *uninstallApp*
 >  - 获取当前App信息 *getAppInfo*
 >  - 获取所有已安装App信息 *getAllAppsInfo*
